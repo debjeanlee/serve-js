@@ -55,6 +55,15 @@ const titleEl = document.getElementById("error-title");
     editBtn.disabled = true;
     editBtn.textContent = "RSVP Editing Closed";
     editBtn.classList.add("disabled");
+
+    // Append contact message
+    const contactMsg = document.createElement("div");
+    contactMsg.className = "edit-closed-message";
+    contactMsg.style.marginTop = "8px";
+    contactMsg.style.color = "#b00";
+    contactMsg.textContent =
+      "If you need to make further edits, please contact us directly. Gabriel: 9729 0552. Deborah: 9452 4301";
+    editBtn.parentNode.insertBefore(contactMsg, editBtn.nextSibling);
   }
 })();
 
