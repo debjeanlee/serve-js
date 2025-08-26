@@ -16,8 +16,33 @@ const titleEl = document.getElementById("error-title");
     if (stored) {
       const eventDates = JSON.parse(stored);
       if (eventDates.church_rsvp_by) {
-        // Parse date in YYYY-MM-DD format
-        deadline = new Date(eventDates.church_rsvp_by + "T23:59:59+08:00");
+        // Helper to parse Singapore time
+        function parseSGDate(dateStr) {
+          // Convert "21 September 2025" → "2025-09-21T23:59:59+08:00"
+          const [day, monthName, year] = dateStr.split(" ");
+          const months = {
+            January: "01",
+            February: "02",
+            March: "03",
+            April: "04",
+            May: "05",
+            June: "06",
+            July: "07",
+            August: "08",
+            September: "09",
+            October: "10",
+            November: "11",
+            December: "12",
+          };
+          const month = months[monthName];
+          const isoString = `${year}-${month}-${day.padStart(
+            2,
+            "0"
+          )}T23:59:59+08:00`;
+          return new Date(isoString);
+        }
+        // parse the date
+        deadline = parseSGDate(eventDates.church_rsvp_by);
       }
     }
   } catch (e) {
