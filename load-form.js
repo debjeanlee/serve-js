@@ -94,7 +94,7 @@ function parseSGDate(dateStr) {
 }
 
 function limitRSVPOptionsIfPastDeadline() {
-  const fallbackDeadline = parseSGDate("24 August 2025");
+  const fallbackDeadline = parseSGDate("1 September 2025");
   let deadline = fallbackDeadline;
 
   try {
@@ -137,7 +137,7 @@ function limitRSVPOptionsIfPastDeadline() {
 
 function hideFormIfPastDeadline() {
   const formWrapper = document.getElementById("rsvp-form");
-  const fallbackDeadline = parseSGDate("21 September 2025");
+  const fallbackDeadline = parseSGDate("30 September 2025");
   let churchRSVPBy = fallbackDeadline;
 
   try {
@@ -165,7 +165,7 @@ function hideFormIfPastDeadline() {
         );
 
         container.innerHTML = `<h2>RSVP's are closed</h2>
-                <p>If you barely missed the deadline, please reach out to us personally and we'll try and help! <br/> Thank you!</p> 
+                <p>If you barely missed the deadline, please reach out to us personally to RSVP. <br/> Thank you!</p> 
                 <p> Gabriel
                 <a href="https://wa.me/6597290552" target="_blank" class="link"
                   >97290552</a

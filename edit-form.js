@@ -8,6 +8,31 @@ const success = document.getElementById("success-popup");
 const messageEl = document.getElementById("error-message");
 const titleEl = document.getElementById("error-title");
 
+// === Disable Edit RSVP Button if Past Deadline ===
+(function () {
+  let deadline;
+  try {
+    const stored = localStorage.getItem("event_dates");
+    if (stored) {
+      const eventDates = JSON.parse(stored);
+      if (eventDates.church_rsvp_by) {
+        // Parse date in YYYY-MM-DD format
+        deadline = new Date(eventDates.church_rsvp_by + "T23:59:59+08:00");
+      }
+    }
+  } catch (e) {
+    console.warn("Failed to get event dates from localStorage:", e);
+  }
+
+  const now = new Date();
+  const editBtn = document.getElementById("edit-btn");
+  if (editBtn && deadline && now > deadline) {
+    editBtn.disabled = true;
+    editBtn.textContent = "RSVP Editing Closed";
+    editBtn.classList.add("disabled");
+  }
+})();
+
 // === Toggle class helper with transition awareness ===
 let isTransitioning = false;
 const toggleClass = (element, className, add) => {
